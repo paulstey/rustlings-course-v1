@@ -7,7 +7,7 @@ enum Message {
     Quit,
     Move(Point), 
     Echo(String),    
-    ChangeColor((i32, i32, i32)),
+    ChangeColor((u8, u8, u8)),
 }
 
 struct Point {
@@ -40,6 +40,12 @@ impl State {
 
     fn process(&mut self, message: Message) {
         // TODO: create a match expression to process the different message variants
+        match message {
+            Message::Quit => { self.quit = true; },
+            Message::Echo(msg) => { println!("{}", msg); },
+            Message::Move(pt) => { self.position = pt; },
+            Message::ChangeColor(rgb) => { self.color = rgb; },
+        }
     }
 }
 
