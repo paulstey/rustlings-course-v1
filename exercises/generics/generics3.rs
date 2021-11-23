@@ -11,16 +11,18 @@
 // Execute 'rustlings hint generics3' for hints!
 
 // I AM NOT DONE
+use std::fmt::Display;
 
-pub struct ReportCard {
-    pub grade: f32,
+#[derive(Debug)]
+pub struct ReportCard<T: Display> {
+    pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl ReportCard {
+impl<T> ReportCard<T> {
     pub fn print(&self) -> String {
-        format!("{} ({}) - achieved a grade of {}",
+        format!("{} ({}) - achieved a grade of {:?}",
             &self.student_name, &self.student_age, &self.grade)
     }
 }
